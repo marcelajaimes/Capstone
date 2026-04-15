@@ -51,7 +51,10 @@ def update_pie_chart(selected_site, payload_range):
         fig = px.pie(success_counts, values='Successes', names='Launch Site',
                      title='Total Successful Launches by Site')
     else:
-        df_plot = filtered_df[filtered_df['Launch Site'] == selected_site]
+        df_plot = filtered_df[
+            (filtered_df['Launch Site'] == selected_site) & 
+            (filtered_df['class'] == 1)
+        ]
         fig = px.pie(df_plot, names='class', title=f'Success Launches for site {selected_site}')
     return fig
 #Callback para el scatter plot
